@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/odin_adapted_color_2"
+    android:minWidth="220dp"
+    android:orientation="vertical"
+    app:backgroundTint="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/headerNotificationErrorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@color/main_color"
+        android:gravity="center"
+        android:padding="16dp"
+        android:visibility="visible"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:tint="@color/white"
+            android:src="@drawable/ic_phone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_border_adapted_color"
+        android:gravity="start"
+        android:hint="Ex. 55912345678"
+        android:inputType="number"
+        android:maxLength="11"
+        android:padding="8dp"
+        android:textAlignment="center"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/textViewInvalidPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/reject"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:visibility="gone"
+        android:text="Informe um número válido incluindo o DDD (ex. 55)."
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMaterialDialogOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/odin_adapted_color"
+        android:enabled="true"
+        android:text="Ok"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
+</LinearLayout>

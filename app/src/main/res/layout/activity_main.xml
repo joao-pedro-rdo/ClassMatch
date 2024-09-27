@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cordinator_category_professionals"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/preto"> <!-- nao sei oq é ainda -->
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_professional_profile"
+            fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/verde"
+            android:orientation="vertical"
+            android:theme="@style/Theme.AppCompat">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/verde"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="snap|scroll|exitUntilCollapsed">
+
+                <!-- Segundaa barra de cima -->
+                <RelativeLayout
+                    android:id="@+id/logoname_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/verde"
+                    android:gravity="top">
+
+
+                    <ImageView
+                        android:id="@+id/header_professional_profile"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:padding="10dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/only_logo_white"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/professional_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="25dp"
+                        android:gravity="center_vertical"
+                        android:text="Meus Clientes"
+                        android:textColor="@color/branco"
+                        android:textSize="18dp" />
+
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/editText"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/professional_name"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/branco"
+                        android:drawableLeft="@drawable/ic_search_client"
+                        android:drawablePadding="10dp"
+                        android:hint="Cód. ou nome do cliente/empresa"
+                        android:padding="10dp" />
+                </RelativeLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/branco"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_plus"
+            app:srcCompat="@drawable/ic_plus"
+            />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</RelativeLayout>
