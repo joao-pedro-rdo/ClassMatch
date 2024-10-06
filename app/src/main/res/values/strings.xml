@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ClassMatch</string>
+    <string name="class_search_hint">Pesquisar diciplinas…</string>
+    <string name="semester">2024/01</string>
 </resources>
