@@ -2,4 +2,9 @@
     <string name="app_name">ClassMatch</string>
     <string name="class_search_hint">Pesquisar diciplinas…</string>
     <string name="semester">2024/01</string>
+    <string name="label_students_total">Estudantes:</string>
+    <string name="label_teachers_total">Professores:</string>
+    <string name="label_interest">Interesse:</string>
+    <string name="class_name_code">%1$s - %2$s</string>
+    <string name="course_semester">%1$s - %2$s</string>
 </resources>
