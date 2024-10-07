@@ -1,3 +1,14 @@
+# ClassMatch
+
+Criação do app com Java usando Android Studio da cadeira de desenvolvimento mobile.
+
+## TO-DO
+- [ ] Melhorar o estilo do markdown
+- [ ] Integrar banco de dados firebase
+- [ ] Fazer os CardView das cadeiras puxar do banco de dados
+- [ ] Fazer botao de cadastro de cadeira cadastrar cadeiras no banco de dados
+
+
 ### Para o Android Studio funcinar no windows:
 - https://www.oracle.com/br/java/technologies/downloads/
 - https://www.oracle.com/br/java/technologies/downloads/#license-lightbox
@@ -25,3 +36,6 @@
   ```sh
   npm i -g git-flow
   ```
+
+
+[- Link dos icones](https://fonts.google.com/icons?hl=pt-br&selected=Material+Symbols+Outlined:add:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=plus&icon.size=24&icon.color=%235f6368)

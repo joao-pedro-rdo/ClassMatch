@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|center"
@@ -13,9 +14,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="402dp"
+        android:orientation="vertical"
+        tools:ignore="ExtraText">
 
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Cadastrar Cadeira"
+            android:text="Cadastrar Componente"
             android:textAlignment="center"
             android:textColor="@color/verde_escuro"
             android:textSize="16sp"
@@ -38,8 +39,8 @@
             android:drawablePadding="10dp"
             android:hint="Curso"
             android:padding="10dp"
-            android:textColor="@color/main_color"
-            android:textColorHint="@color/black" />
+            android:textColor="@color/cinza_claro"
+            android:textColorHint="@color/cinza_claro" />
 
         <EditText
             android:layout_width="match_parent"
@@ -48,10 +49,10 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:drawablePadding="10dp"
-            android:hint="Nome da cadeira"
+            android:hint="Nome da componente curricular"
             android:padding="10dp"
-            android:textColor="@color/main_color"
-            android:textColorHint="@color/black" />
+            android:textColor="@color/cinza_claro"
+            android:textColorHint="@color/cinza_claro" />
 
         <EditText
             android:layout_width="match_parent"
@@ -62,8 +63,36 @@
             android:drawablePadding="10dp"
             android:hint="Codigo da cadeira"
             android:padding="10dp"
-            android:textColor="@color/main_color"
-            android:textColorHint="@color/black" />
+            android:textColor="@color/cinza_claro"
+            android:textColorHint="@color/cinza_claro" />
+
+        <Spinner
+            android:id="@+id/spinnerSemestre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/spinner_background"
+            android:drawableEnd="@drawable/ic_warning"
+            android:drawablePadding="10dp"
+            android:layoutDirection="ltr"
+            android:padding="10dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:spinnerMode="dropdown"
+            android:textAlignment="center" />
+
+
+        <CheckBox
+            android:id="@+id/checkboxAgree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Possui pré-requisitos"
+            android:textColor="@color/black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
@@ -73,7 +102,6 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="3dp"
             android:backgroundTint="@color/verde"
-            android:drawableRight="@drawable/ic_plus"
             android:drawableTint="@color/white"
             android:text="Cadastrar"
             android:textColor="@color/white" />
