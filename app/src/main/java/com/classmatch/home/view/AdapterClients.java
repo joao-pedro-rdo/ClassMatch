@@ -31,13 +31,16 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
     private List<ClientCard> itens;
     private AdapterClients adapter;
     private String username;
+    private OnItemClickListener listener;
+
 
     public AdapterClients(MainActivity activity, Context mContext,
-                          List<ClientCard> items, String username) {
+                          List<ClientCard> items, String username, OnItemClickListener listener) {
         this.activity = activity;
         this.mContext = mContext;
         this.itens = items;
         this.username = username;
+        this.listener = listener; // Aqui você passa o listener
         this.adapter = this;
     }
 
@@ -47,6 +50,10 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         this.itens = adapter.getRegisterItems();
         this.username = adapter.username;
         this.adapter = adapter;
+    }
+    // Para fazer os intens serem clicados
+    public interface OnItemClickListener{
+        void onItemClick(ClientCard client);
     }
 
     public Context getmContext() {
@@ -75,11 +82,23 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
     public void onBindViewHolder(final MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         YLog.d("AdapterClientRegister", "onBindViewHolder", "Entrou no metodo...");
 
-        holder.cardView.setOnClickListener(null);
+        // Obtendo o item atual
         final ClientCard itemDetail = itens.get(position);
-//        holder.icon.setImageDrawable(itemDetail.getIcon());
+
+        // Vinculando os dados ao ViewHolder
         holder.company.setText(itemDetail.getCompany());
         holder.name.setText(itemDetail.getName());
+
+        // Remova o `null` aqui, pois vamos definir o click listener
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Verifique se o listener está definido, e chame o método
+                if (listener != null) {
+                    listener.onItemClick(itemDetail);
+                }
+            }
+        });
     }
 
 
@@ -107,7 +126,7 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
             name = view.findViewById(R.id.textViewName);
             company = view.findViewById(R.id.textViewCompany);
             icon = view.findViewById(R.id.photo);
-            cardView = view.findViewById(R.id.cardViewClient);
+            cardView = view.findViewById(R.id.cardViewClient);  // Certifique-se que o ID está correto
         }
     }
 
@@ -130,3 +149,6 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         return pattern.matcher(temp).replaceAll("");
     }
 }
+
+
+
