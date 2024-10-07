@@ -23,9 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Cadastrar Cliente"
+            android:text="Cadastrar Cadeira"
             android:textAlignment="center"
-            android:textColor="@color/main_color"
+            android:textColor="@color/verde_escuro"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:drawablePadding="10dp"
-            android:hint="Informe um código"
+            android:hint="Curso"
             android:padding="10dp"
             android:textColor="@color/main_color"
             android:textColorHint="@color/black" />
@@ -48,7 +48,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:drawablePadding="10dp"
-            android:hint="Informe o nome do cliente"
+            android:hint="Nome da cadeira"
             android:padding="10dp"
             android:textColor="@color/main_color"
             android:textColorHint="@color/black" />
@@ -60,20 +60,10 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:drawablePadding="10dp"
-            android:hint="Informe a empresa do cliente"
+            android:hint="Codigo da cadeira"
             android:padding="10dp"
             android:textColor="@color/main_color"
             android:textColorHint="@color/black" />
-
-
-        <ProgressBar
-            android:id="@+id/chargebackProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="8dp"
-            android:visibility="gone" />
-
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
@@ -82,34 +72,11 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="3dp"
-            android:backgroundTint="@color/main_color"
+            android:backgroundTint="@color/verde"
             android:drawableRight="@drawable/ic_plus"
             android:drawableTint="@color/white"
             android:text="Cadastrar"
             android:textColor="@color/white" />
-
-
-        <!-- Slider (controle deslizante) adicionado aqui -->
-        <com.google.android.material.slider.Slider
-            android:id="@+id/slider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:value="50"
-            android:valueFrom="0"
-            android:valueTo="100"
-            app:labelBehavior="floating"
-            app:thumbColor="@color/verde_escuro"
-            app:trackColorActive="@color/verde" />
-
-        <!-- ProgressBar -->
-        <ProgressBar
-            android:id="@+id/chargebackProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="8dp"
-            android:visibility="gone" />
 
 
     </LinearLayout>

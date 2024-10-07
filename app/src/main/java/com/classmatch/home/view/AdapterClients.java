@@ -24,6 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import android.content.Intent;
+import android.content.Context;
+import android.widget.TextView;
+
+
+
 public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHolder> {
 
     private MainActivity activity;
@@ -93,10 +99,23 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Verifique se o listener está definido, e chame o método
-                if (listener != null) {
-                    listener.onItemClick(itemDetail);
-                }
+
+//                // Verifique se o listener está definido, e chame o método
+//                if (listener != null) {
+//                    listener.onItemClick(itemDetail);
+//                }
+
+                // Criar uma intent para abrir a nova tela
+                Intent intent = new Intent(v.getContext(), DetailActivity.class);
+
+                // Passar os dados do item para a nova Activity
+                intent.putExtra("name", itemDetail.getName());
+                intent.putExtra("company", itemDetail.getCompany());
+
+                // Iniciar a nova Activity
+                v.getContext().startActivity(intent);
+
+
             }
         });
     }

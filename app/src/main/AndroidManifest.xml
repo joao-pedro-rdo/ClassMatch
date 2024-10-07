@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Activity da tela que clica no card -->
+        <activity
+            android:name=".home.view.DetailActivity">
+        </activity>
     </application>
 
 </manifest>
