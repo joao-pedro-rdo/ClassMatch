@@ -24,6 +24,8 @@ import com.classmatch.util.YLog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import android.widget.Toast;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.router = new HomeRouter();
-        addRecyclerView();
+        addRecyclerView(); // Configurando a RecyclerView e os dados da lista
         addButtons();
         addSearchBar();
         YLog.d("ActivityClientRegister", "addRecyclerView", "adapter size:: " + adapter.getItemCount());
@@ -74,24 +76,49 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    // Método responsável por configurar a RecyclerView e os itens
     private void addRecyclerView() {
+        // Adicionando alguns itens à lista de clientes (exemplos de dados)
+        // Inicializando a RecyclerView e o ArrayList para armazenar os clientes
         recyclerView = findViewById(R.id.recycler);
         clients = new ArrayList<>();
-        adapter = new AdapterClients(this, getApplicationContext(), clients, "username teste = presenter.getUsername");
+
+        //adapter = new AdapterClients(this, getApplicationContext(), clients, "username teste = presenter.getUsername", );
+
+        // Inicializando o Adapter, passando o listener para detectar o clique nos itens
+        adapter = new AdapterClients(this, getApplicationContext(), clients, "username teste = presenter.getUsername",
+                new AdapterClients.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(ClientCard client) {
+                        // Ação a ser executada quando um item da lista for clicado
+                        // Exemplo: Mostrando um Toast com o nome do cliente clicado
+                        Toast.makeText(getApplicationContext(), "Clicou em: " + client.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // Adicionando alguns itens à lista de clientes (exemplos de dados)
         adapter.addItem(new ClientCard("Estrutura de Dados", "ES", "001", ""));
         adapter.addItem(new ClientCard("Computabilidade", "CS", "001", ""));
         adapter.addItem(new ClientCard("Engenahria de Software 1", "CC", "001", ""));
         adapter.addItem(new ClientCard("Silvio", "MedBe", "001", ""));
         adapter.addItem(new ClientCard("Joaoa", "unipampa", "002", ""));
 
+        // Configurando o layout manager para o RecyclerView (Grid com 1 coluna)
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
+
+
+
+
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        // Definindo o adapter na RecyclerView
         recyclerView.setAdapter(adapter);
         System.out.println("imprimindo recycler" + recyclerView.getAdapter());
         System.out.println("imprimindo adapter" + adapter.getItemCount());
         YLog.d("ActivityClientRegister", "addRecyclerView", "adapter size:: " + adapter.getItemCount());
+        // Notificando que os dados mudaram para atualizar a lista
         adapter.notifyDataSetChanged();
     }
 
