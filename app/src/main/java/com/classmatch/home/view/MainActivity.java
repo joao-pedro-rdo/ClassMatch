@@ -97,11 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         // Adicionando alguns itens à lista de clientes (exemplos de dados)
-        adapter.addItem(new ClientCard("Estrutura de Dados", "ES", "001", ""));
-        adapter.addItem(new ClientCard("Computabilidade", "CS", "001", ""));
-        adapter.addItem(new ClientCard("Engenahria de Software 1", "CC", "001", ""));
-        adapter.addItem(new ClientCard("Silvio", "MedBe", "001", ""));
-        adapter.addItem(new ClientCard("Joaoa", "unipampa", "002", ""));
+        adapter.addItem(new ClientCard("AL0099 - Estrutura de Dados", "ES", "001", ""));
+        adapter.addItem(new ClientCard("AL0099 - Computabilidade", "CS", "001", ""));
+        adapter.addItem(new ClientCard("AL0099 - Engenahria de Software 1", "CC", "001", ""));
 
         // Configurando o layout manager para o RecyclerView (Grid com 1 coluna)
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);

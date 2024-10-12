@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.classmatch.R;
 import com.classmatch.home.HomeContracts;
 import com.classmatch.home.entity.ClientCard;
+import com.classmatch.results.view.ResultsActivity;
 import com.classmatch.util.YLog;
 
 import java.text.Normalizer;
@@ -106,7 +107,7 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
 //                }
 
                 // Criar uma intent para abrir a nova tela
-                Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                Intent intent = new Intent(v.getContext(), ResultsActivity.class);
 
                 // Passar os dados do item para a nova Activity
                 intent.putExtra("name", itemDetail.getName());
@@ -142,9 +143,9 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
 
         public MyViewHolder(View view) {
             super(view);
-            name = view.findViewById(R.id.textViewName);
-            company = view.findViewById(R.id.textViewCompany);
-            icon = view.findViewById(R.id.photo);
+            name = view.findViewById(R.id.className);
+            company = view.findViewById(R.id.courseName);
+//            icon = view.findViewById(R.id.photo);
             cardView = view.findViewById(R.id.cardViewClient);  // Certifique-se que o ID está correto
         }
     }
