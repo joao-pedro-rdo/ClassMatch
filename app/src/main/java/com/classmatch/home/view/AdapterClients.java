@@ -95,14 +95,14 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         final ClientCard itemDetail = itens.get(position);
 
         // Preenchendo os campos da View com os dados do ClientCard
-        holder.company.setText(itemDetail.getCompany());
+        holder.company.setText(itemDetail.getCourse());
         holder.name.setText(itemDetail.getName());
 
         // Definindo o clique no CardView para abrir uma nova Activity
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ResultsActivity.class);
             intent.putExtra("name", itemDetail.getName());
-            intent.putExtra("company", itemDetail.getCompany());
+            intent.putExtra("company", itemDetail.getCourse());
             v.getContext().startActivity(intent);
         });
     }
@@ -141,7 +141,7 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         ArrayList<ClientCard> result = new ArrayList<>();
         for (int i = 0; i < itens.size(); i++) {
             if (unAccent(itens.get(i).getName().toLowerCase()).contains(unAccent(text.toLowerCase()))
-                    || unAccent(itens.get(i).getCompany().toLowerCase()).contains(unAccent(text.toLowerCase()))) {
+                    || unAccent(itens.get(i).getCourse().toLowerCase()).contains(unAccent(text.toLowerCase()))) {
                 result.add(itens.get(i));
             }
         }

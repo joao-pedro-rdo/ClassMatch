@@ -1,35 +1,43 @@
 package com.classmatch.home.entity;
 
 public class ClientCard {
-    String name;
-    String company;
-    String code;
-    String photo;
+    private String name;
+    private String course;
+    private String code;
+    private String semestre;
+    private boolean hasPrerequisites;
 
+    // Construtor vazio necessário para Firebase
     public ClientCard() {
     }
 
-    public ClientCard(String name, String company, String code, String photo) {
+    // Construtor com todos os campos
+    public ClientCard(String name, String course, String code, String semestre, boolean hasPrerequisites) {
         this.name = name;
-        this.company = company;
+        this.course = course;
         this.code = code;
-        this.photo = photo;
+        this.semestre = semestre;
+        this.hasPrerequisites = hasPrerequisites;
     }
 
+    // Getters e Setters
     public String getName() {
         return name;
+    }
+    public String geCourse() {
+        return course;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getCompany() {
-        return company;
+    public String getCourse() {
+        return course;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     public String getCode() {
@@ -40,11 +48,19 @@ public class ClientCard {
         this.code = code;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getSemestre() {
+        return semestre;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
+    }
+
+    public boolean hasPrerequisites() {
+        return hasPrerequisites;
+    }
+
+    public void setHasPrerequisites(boolean hasPrerequisites) {
+        this.hasPrerequisites = hasPrerequisites;
     }
 }

@@ -97,45 +97,35 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Método responsável por configurar a RecyclerView e os itens
+    // Método responsável por configurar a RecyclerView e o Adapter
     private void addRecyclerView() {
-        // Adicionando alguns itens à lista de clientes (exemplos de dados)
-        // Inicializando a RecyclerView e o ArrayList para armazenar os clientes
+        // Inicializando a RecyclerView e a lista de clientes vazia
         recyclerView = findViewById(R.id.recycler);
         clients = new ArrayList<>();
 
-        //adapter = new AdapterClients(this, getApplicationContext(), clients, "username teste = presenter.getUsername", );
-
-        // Inicializando o Adapter, passando o listener para detectar o clique nos itens
-        adapter = new AdapterClients(this, getApplicationContext(), clients, "username teste = presenter.getUsername",
+        // Inicializando o Adapter com a lista vazia e passando o listener para clique nos itens
+        adapter = new AdapterClients(this, getApplicationContext(), clients, "username",
                 new AdapterClients.OnItemClickListener() {
                     @Override
                     public void onItemClick(ClientCard client) {
-                        // Ação a ser executada quando um item da lista for clicado
                         // Exemplo: Mostrando um Toast com o nome do cliente clicado
                         Toast.makeText(getApplicationContext(), "Clicou em: " + client.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
-        // Adicionando alguns itens à lista de clientes (exemplos de dados)
-        adapter.addItem(new ClientCard("AL0099 - Estrutura de Dados", "ES", "001", ""));
-        adapter.addItem(new ClientCard("AL0099 - Computabilidade", "CS", "001", ""));
-        adapter.addItem(new ClientCard("AL0099 - Engenahria de Software 1", "CC", "001", ""));
-
-        // Configurando o layout manager para o RecyclerView (Grid com 1 coluna)
+        // Configurando o LayoutManager para o RecyclerView (Grid com 1 coluna)
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
-
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         // Definindo o adapter na RecyclerView
         recyclerView.setAdapter(adapter);
-        System.out.println("imprimindo recycler" + recyclerView.getAdapter());
-        System.out.println("imprimindo adapter" + adapter.getItemCount());
+
+        // Apenas para verificar no log se o adapter foi configurado corretamente
+        System.out.println("imprimindo recycler: " + recyclerView.getAdapter());
+        System.out.println("imprimindo adapter: " + adapter.getItemCount());
         YLog.d("ActivityClientRegister", "addRecyclerView", "adapter size:: " + adapter.getItemCount());
-        // Notificando que os dados mudaram para atualizar a lista
-        adapter.notifyDataSetChanged();
     }
 
     private void fetchMateriasFromFirebase() {
