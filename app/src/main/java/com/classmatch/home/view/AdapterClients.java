@@ -41,13 +41,13 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
     private OnItemClickListener listener;
 
 
-    public AdapterClients(MainActivity activity, Context mContext,
-                          List<ClientCard> items, String username, OnItemClickListener listener) {
+    public AdapterClients(MainActivity activity, Context mContext, List<ClientCard> items,
+                          String username, OnItemClickListener listener) {
         this.activity = activity;
         this.mContext = mContext;
-        this.itens = items;
+        this.itens = items != null ? items : new ArrayList<>(); // Garante que a lista não é nula
         this.username = username;
-        this.listener = listener; // Aqui você passa o listener
+        this.listener = listener;
         this.adapter = this;
     }
 
@@ -58,8 +58,9 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         this.username = adapter.username;
         this.adapter = adapter;
     }
+
     // Para fazer os intens serem clicados
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(ClientCard client);
     }
 
@@ -77,6 +78,7 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
 
     public void setItens(List<ClientCard> itens) {
         this.itens = itens;
+        notifyDataSetChanged(); // Atualiza a RecyclerView ao receber novos dados
     }
 
     public void addItem(ClientCard icon) {
@@ -87,37 +89,21 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        YLog.d("AdapterClientRegister", "onBindViewHolder", "Entrou no metodo...");
+        YLog.d("AdapterClientRegister", "onBindViewHolder", "Entrou no método.");
 
         // Obtendo o item atual
         final ClientCard itemDetail = itens.get(position);
 
-        // Vinculando os dados ao ViewHolder
+        // Preenchendo os campos da View com os dados do ClientCard
         holder.company.setText(itemDetail.getCompany());
         holder.name.setText(itemDetail.getName());
 
-        // Remova o `null` aqui, pois vamos definir o click listener
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                // Verifique se o listener está definido, e chame o método
-//                if (listener != null) {
-//                    listener.onItemClick(itemDetail);
-//                }
-
-                // Criar uma intent para abrir a nova tela
-                Intent intent = new Intent(v.getContext(), ResultsActivity.class);
-
-                // Passar os dados do item para a nova Activity
-                intent.putExtra("name", itemDetail.getName());
-                intent.putExtra("company", itemDetail.getCompany());
-
-                // Iniciar a nova Activity
-                v.getContext().startActivity(intent);
-
-
-            }
+        // Definindo o clique no CardView para abrir uma nova Activity
+        holder.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ResultsActivity.class);
+            intent.putExtra("name", itemDetail.getName());
+            intent.putExtra("company", itemDetail.getCompany());
+            v.getContext().startActivity(intent);
         });
     }
 
@@ -132,7 +118,7 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
 
     @Override
     public int getItemCount() {
-        return getRegisterItems().size();
+        return itens != null ? itens.size() : 0; // Retorna 0 se a lista estiver vazia
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -155,7 +141,7 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         ArrayList<ClientCard> result = new ArrayList<>();
         for (int i = 0; i < itens.size(); i++) {
             if (unAccent(itens.get(i).getName().toLowerCase()).contains(unAccent(text.toLowerCase()))
-            || unAccent(itens.get(i).getCompany().toLowerCase()).contains(unAccent(text.toLowerCase()))) {
+                    || unAccent(itens.get(i).getCompany().toLowerCase()).contains(unAccent(text.toLowerCase()))) {
                 result.add(itens.get(i));
             }
         }
@@ -168,7 +154,7 @@ public class AdapterClients extends RecyclerView.Adapter<AdapterClients.MyViewHo
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("");
     }
-}
 
+}
 
 

@@ -26,6 +26,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import android.widget.Toast;
 
+// Import
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import android.util.Log;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,15 +44,25 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<ClientCard> clients;
     private AdapterClients adapter;
+    private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.router = new HomeRouter();
+
+        // Inicializa o Firebase Database
+        databaseReference = FirebaseDatabase.getInstance().getReference("materias");
+
         addRecyclerView(); // Configurando a RecyclerView e os dados da lista
         addButtons();
         addSearchBar();
+
+        // Busca as matérias do Firebase
+        fetchMateriasFromFirebase();
+
         YLog.d("ActivityClientRegister", "addRecyclerView", "adapter size:: " + adapter.getItemCount());
 
     }
@@ -76,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     // Método responsável por configurar a RecyclerView e os itens
     private void addRecyclerView() {
         // Adicionando alguns itens à lista de clientes (exemplos de dados)
@@ -106,9 +127,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
 
 
-
-
-
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         // Definindo o adapter na RecyclerView
@@ -120,5 +138,24 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    private void fetchMateriasFromFirebase() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                clients.clear(); // Limpa a lista antes de adicionar novos itens
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    ClientCard clientCard = snapshot.getValue(ClientCard.class);
+                    clients.add(clientCard); // Adiciona cada matéria à lista
+                }
+                adapter.notifyDataSetChanged(); // Atualiza o RecyclerView
+            }
 
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Log de erro para ajudar na depuração
+                Log.e("FirebaseError", "Erro ao buscar dados", error.toException());
+            }
+        });
+
+    }
 }
