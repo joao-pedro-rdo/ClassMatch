@@ -11,5 +11,6 @@
     <string name="classe_curso_semestre">%1$s - %2$d° Semestre</string>
     <string name="aluno_classes_lista_subtitulo">Selecione as disciplinas de seu interesse</string>
     <string name="classe_requisito_tooltip">Requisito para outras classes</string>
+    <string name="professor_classes_lista_subtitulo">Classifique as disciplinas conforme seu interesse</string>
 
 </resources>

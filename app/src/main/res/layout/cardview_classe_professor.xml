@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Material3.CardView.Elevated"
     android:id="@+id/cardview_classe_aluno"
+    style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="4dp"
-    app:cardBackgroundColor="@color/verde_claro"
-    android:checkable="true"
-    app:checkedIconVisible="true"
-    app:checkedIcon="@drawable/baseline_check_circle_24"
-    app:checkedIconTint="@color/verde">
+    android:clickable="true"
+    app:cardBackgroundColor="@color/verde_claro">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,34 +26,46 @@
             android:textColor="@color/texto"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/textview_interesse"
             app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textview_curso_semestre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:text="@string/classe_curso_semestre"
-                android:textColor="@color/texto_secundario"
-                android:textSize="12sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/imageview_requisito"
-                app:layout_constraintTop_toBottomOf="@id/textview_codigo_nome"/>
+        <TextView
+            android:id="@+id/textview_curso_semestre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/classe_curso_semestre"
+            android:textColor="@color/texto_secundario"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/imageview_requisito"
+            app:layout_constraintTop_toBottomOf="@id/textview_codigo_nome" />
 
-    <ImageView
-        android:id="@+id/imageview_requisito"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginLeft="4dp"
-        android:src="@android:drawable/stat_sys_warning"
-        android:visibility="visible"
-        app:tint="@color/warning"
-        app:layout_constraintLeft_toRightOf="@+id/textview_curso_semestre"
-        app:layout_constraintBottom_toBottomOf="@+id/textview_curso_semestre"
-        app:layout_constraintTop_toTopOf="@id/textview_curso_semestre"
-        android:tooltipText="@string/classe_requisito_tooltip"/>
+        <ImageView
+            android:id="@+id/imageview_requisito"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="4dp"
+            android:src="@android:drawable/stat_sys_warning"
+            android:tooltipText="@string/classe_requisito_tooltip"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/textview_curso_semestre"
+            app:layout_constraintLeft_toRightOf="@+id/textview_curso_semestre"
+            app:layout_constraintTop_toTopOf="@id/textview_curso_semestre"
+            app:tint="@color/warning" />
+
+        <TextView
+            android:id="@+id/textview_interesse"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/shape_interesse_filled"
+            android:text="5"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/verde_claro"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

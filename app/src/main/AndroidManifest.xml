@@ -35,6 +35,9 @@
         <activity
             android:name=".aluno.view.AlunoActivity" android:exported="false">
         </activity>
+        <activity
+            android:name=".professor.view.ProfessorActivity" android:exported="true">
+        </activity>
     </application>
 
 </manifest>

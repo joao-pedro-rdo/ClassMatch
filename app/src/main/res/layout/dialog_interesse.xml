@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Avalie a Classe"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rating_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rating_1"
+            style="@style/RatingOutlinedCircle"
+            android:layout_marginStart="4dp"
+            android:tag="1"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/rating_2"
+            style="@style/RatingOutlinedCircle"
+            android:layout_marginStart="4dp"
+            android:tag="2"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/rating_3"
+            style="@style/RatingOutlinedCircle"
+            android:layout_marginStart="4dp"
+            android:tag="3"
+            android:text="3" />
+
+        <TextView
+            android:id="@+id/rating_4"
+            style="@style/RatingOutlinedCircle"
+            android:layout_marginStart="4dp"
+            android:tag="4"
+            android:text="4" />
+
+        <TextView
+            android:id="@+id/rating_5"
+            style="@style/RatingOutlinedCircle"
+            android:layout_marginStart="4dp"
+            android:tag="5"
+            android:text="5" />
+    </LinearLayout>
+</LinearLayout>
