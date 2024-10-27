@@ -5,6 +5,10 @@
     <color name="verde_claro">#DBFFEC</color> <!-- Levemente mais claro -->
     <color name="verde_escuro">#006C32</color> <!-- Levemente mais escuro -->
 
+
+    <color name="texto">#37654D</color>
+    <color name="texto_secundario">#759282</color>
+
     <!-- Preto -->
     <color name="preto">#000000</color> <!-- Original -->
     <color name="preto_claro">#333333</color> <!-- Levemente mais claro -->

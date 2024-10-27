@@ -32,6 +32,9 @@
         <activity
             android:name=".home.view.DetailActivity">
         </activity>
+        <activity
+            android:name=".aluno.view.AlunoActivity" android:exported="false">
+        </activity>
     </application>
 
 </manifest>
