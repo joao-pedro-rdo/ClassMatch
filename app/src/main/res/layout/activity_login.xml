@@ -19,11 +19,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="288dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/caixatexto"
         android:ems="10"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editTextSenha"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="32dp"
@@ -50,23 +50,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintVertical_bias="0.081" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:background="@drawable/btn_fundo"
+        android:id="@+id/buttonLogin"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/btn_fundo"
         android:text="Entrar"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSenha"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
