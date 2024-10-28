@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Layout principal para coordenar os componentes -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/cordinator_category_professionals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/preto"> <!-- nao sei oq é ainda -->
+        android:background="@color/preto"> <!-- Container principal -->
 
+        <!-- Barra de app com capacidade de colapsar -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_professional_profile"
             fitsSystemWindows="true"
@@ -19,6 +21,7 @@
             android:orientation="vertical"
             android:theme="@style/Theme.AppCompat">
 
+            <!-- Toolbar que pode ser recolhida ao rolar a tela -->
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
@@ -28,7 +31,7 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="snap|scroll|exitUntilCollapsed">
 
-                <!-- Segundaa barra de cima -->
+                <!-- Layout com o logotipo e o nome do cabeçalho -->
                 <RelativeLayout
                     android:id="@+id/logoname_layout"
                     android:layout_width="match_parent"
@@ -36,7 +39,7 @@
                     android:background="@color/verde"
                     android:gravity="top">
 
-
+                    <!-- Logo (oculto por padrão) -->
                     <ImageView
                         android:id="@+id/header_professional_profile"
                         android:layout_width="60dp"
@@ -48,6 +51,7 @@
                         android:src="@drawable/only_logo_white"
                         android:visibility="gone" />
 
+                    <!-- Título do cabeçalho -->
                     <TextView
                         android:id="@+id/professional_name"
                         android:layout_width="wrap_content"
@@ -59,7 +63,7 @@
                         android:textColor="@color/branco"
                         android:textSize="18dp" />
 
-
+                    <!-- Campo de busca abaixo do título-->
                     <EditText
                         android:layout_width="match_parent"
                         android:id="@+id/editText"
@@ -73,34 +77,38 @@
                         android:drawablePadding="10dp"
                         android:hint="Cód. ou nome do cliente/empresa"
                         android:padding="10dp" />
+
                 </RelativeLayout>
+
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <!-- Conteúdo que pode ser rolado -->
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/branco"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <!-- Layout contendo o RecyclerView -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <!-- RecyclerView para exibir a lista de itens -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-
-
             </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
 
+        <!-- Botão de ação flutuante no canto inferior direito -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -113,7 +121,22 @@
             android:backgroundTint="@color/verde"
             android:src="@drawable/ic_add"
             app:srcCompat="@drawable/ic_add"
-            />
+            app:tint="@color/branco" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Novo botão para abrir o campo de pesquisa -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/verde"
+        android:src="@drawable/ic_search"
+        app:tint="@color/branco"
+    android:contentDescription="Pesquisar Disciplina" />
+
 
 </RelativeLayout>
