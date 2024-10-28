@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.text.TextUtils;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,12 +19,15 @@ import com.classmatch.login.LoginContracts;
 import com.classmatch.login.entity.Credenciais;
 import com.classmatch.login.presenter.LoginPresenter;
 import com.classmatch.login.router.LoginRouter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements LoginContracts.View {
 
     private LoginContracts.Presenter presenter;
-
     private Credenciais credenciais;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        mAuth = FirebaseAuth.getInstance();
 
         this.presenter = new LoginPresenter(this, new LoginRouter(this));
         this.credenciais = new Credenciais();
@@ -43,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         addSenhaInput();
         addLoginButton();
     }
+
 
     void addEmailInput() {
         EditText emailInput = findViewById(R.id.editTextEmail);
@@ -86,21 +92,33 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     void addLoginButton() {
         Button buttonLogin = findViewById(R.id.buttonLogin);
+
         buttonLogin.setOnClickListener(view -> {
-            switch (credenciais.getEmail()) {
-                case "aluno":
-                    presenter.onAlunoLogin();
-                    break;
-                case "professor":
-                    presenter.onProfessorLogin();
-                    break;
-                case "orientador":
-                    presenter.onOrientadorLogin();
-                    break;
-                default:
-                    Toast.makeText(this, "Credencias inválidas! Use aluno, prefessor ou orientador", Toast.LENGTH_SHORT).show();
-                    break;
+            if(!TextUtils.isEmpty(credenciais.getEmail())|| !TextUtils.isEmpty(credenciais.getSenha())){
+                mAuth.signInWithEmailAndPassword(credenciais.getEmail(),credenciais.getSenha())
+                        .addOnCompleteListener((OnCompleteListener<AuthResult>) task -> {
+                            if(task.isSuccessful()){
+                                switch (credenciais.getEmail()) {
+                                    case "aluno@teste.com":
+                                        presenter.onAlunoLogin();
+                                        break;
+                                    case "professor@teste.com":
+                                        presenter.onProfessorLogin();
+                                        break;
+                                    case "orientador@teste.com":
+                                        presenter.onOrientadorLogin();
+                                        break;
+                                    default:
+                                        Toast.makeText(LoginActivity.this, "Credencias inválidas! Use aluno, prefessor ou orientador", Toast.LENGTH_SHORT).show();
+                                        break;
+                                }
+                            }else{
+                                String error = task.getException().getMessage();
+                                Toast.makeText(LoginActivity.this,""+error,Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
+
     }
 }
