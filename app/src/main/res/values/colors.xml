@@ -8,6 +8,9 @@
 
     <color name="texto">#37654D</color>
     <color name="texto_secundario">#759282</color>
+    <color name="text_claro_secundario">#9CE9C1</color>
+
+    <color name="riple_verde_escuro">#0D984F</color>
 
     <!-- Preto -->
     <color name="preto">#000000</color> <!-- Original -->

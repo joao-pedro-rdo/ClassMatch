@@ -12,5 +12,6 @@
     <string name="aluno_classes_lista_subtitulo">Selecione as disciplinas de seu interesse</string>
     <string name="classe_requisito_tooltip">Requisito para outras classes</string>
     <string name="professor_classes_lista_subtitulo">Classifique as disciplinas conforme seu interesse</string>
-
+    <string name="orientador_classes_lista_subtitulo">Disciplinas ofertadas</string>
+    <string name="descricao_botao_adicionar_classe">Adicionar classes</string>
 </resources>

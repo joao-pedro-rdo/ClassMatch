@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="orientador_class_ordem">
+        <item>Alunos</item>
+        <item>Professores</item>
+    </string-array>
+</resources>

@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         this.presenter = new LoginPresenter(this, new LoginRouter(this));
         this.credenciais = new Credenciais();
 
+//        this.presenter.onOrientadorLogin();
+
         addEmailInput();
         addSenhaInput();
         addLoginButton();

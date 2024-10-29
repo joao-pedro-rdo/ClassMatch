@@ -13,31 +13,33 @@
         android:theme="@style/Theme.ClassMatch"
         tools:targetApi="31">
         <activity
+            android:name=".orientador.view.ResultadoActivity"
+            android:exported="false" />
+        <activity
             android:name=".results.view.ResultsActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".login.view.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".home.view.MainActivity"
-            android:exported="false">
-        </activity>
-        <!--Activity da tela que clica no card -->
+            android:exported="false"/>
+        <activity android:name=".home.view.DetailActivity"/>
         <activity
-            android:name=".home.view.DetailActivity">
-        </activity>
+            android:name=".aluno.view.AlunoActivity"
+            android:exported="false"/>
         <activity
-            android:name=".aluno.view.AlunoActivity" android:exported="false">
-        </activity>
+            android:name=".professor.view.ProfessorActivity"
+            android:exported="false"/>
         <activity
-            android:name=".professor.view.ProfessorActivity" android:exported="true">
-        </activity>
+            android:name=".orientador.view.OrientadorActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>
