@@ -1,36 +1,37 @@
 package com.classmatch.orientador.view;
 
-import android.content.Context;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ResultadoTabAdapter extends FragmentStateAdapter {
+    private String idClasse;
+
     public ResultadoTabAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
-    public ResultadoTabAdapter(@NonNull Fragment fragment) {
-        super(fragment);
-    }
-
-    public ResultadoTabAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
-        super(fragmentManager, lifecycle);
+    public ResultadoTabAdapter(@NonNull FragmentActivity fragmentActivity, String idClasse) {
+        super(fragmentActivity);
+        this.idClasse = idClasse;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString("idClasse", idClasse);
         if (position == 0) {
-            return new ResultadoProfessoresFragment();
+            ResultadoProfessoresFragment fragment = new ResultadoProfessoresFragment();
+            fragment.setArguments(bundle);
+            return fragment;
         } else {
-            return new ResultadoAlunosFragment();
-
+            ResultadoAlunosFragment fragment = new ResultadoAlunosFragment();
+            fragment.setArguments(bundle);
+            return fragment;
         }
     }
 

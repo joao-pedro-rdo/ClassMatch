@@ -83,12 +83,8 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
-                    app:boxStrokeColor="@android:color/transparent"
-                    app:boxStrokeErrorColor="@android:color/transparent"
-                    android:background="@drawable/spinner_classe_ordem"
+                    app:hintEnabled="true"
+                    android:hint="Ordenar por"
                     app:layout_constraintRight_toRightOf="parent">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView

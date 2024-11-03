@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
+
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -24,6 +25,7 @@ public class ResultadoActivity extends AppCompatActivity {
 
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
+    private String idClasse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,8 @@ public class ResultadoActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Get the data using the key
-        String nomeClasse = intent.getStringExtra("classe");
+        String nomeClasse = intent.getStringExtra("nomeClasse");
+        idClasse = intent.getStringExtra("idClasse");
 
         // Configurando a Toolbar
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
@@ -61,7 +64,7 @@ public class ResultadoActivity extends AppCompatActivity {
 
         // Configurando o ViewPager
         viewPager = findViewById(R.id.viewPager);
-        ResultadoTabAdapter adapter = new ResultadoTabAdapter(this);
+        ResultadoTabAdapter adapter = new ResultadoTabAdapter(this, idClasse);
         viewPager.setAdapter(adapter);
 
         // Configurando o TabLayout

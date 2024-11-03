@@ -52,7 +52,7 @@ public class ProfessorActivity extends AppCompatActivity implements ProfessorCon
     private void criarLista() {
         recyclerView = findViewById(R.id.recyclerview_lista_classes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        classeCardAdaptor = new ClasseCardAdaptor(new ArrayList<>(), this);
+        classeCardAdaptor = new ClasseCardAdaptor(new ArrayList<>(), this, this.presenter);
         recyclerView.setAdapter(classeCardAdaptor);
     }
 

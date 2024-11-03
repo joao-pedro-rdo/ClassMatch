@@ -1,37 +1,90 @@
 package com.classmatch.orientador.entity;
 
 public class ClasseCard {
-    private Classe classe;
-    private int totalAlunos;
-    private int totalProfessores;
+    private int alunos;
+    private int professores;
+    String id;
+    String nome;
+    String codigo;
+    String curso;
+    int semestre;
+    boolean requisito;
 
-    public ClasseCard(Classe classe, int totalProfessores, int totalAlunos) {
-        this.classe = classe;
-        this.totalProfessores = totalProfessores;
-        this.totalAlunos = totalAlunos;
+    public ClasseCard() {
     }
 
-    public Classe getClasse() {
-        return classe;
+    public ClasseCard(int alunos, int professores, String id, String nome, String codigo, String curso, int semestre, boolean requisito) {
+        this.alunos = alunos;
+        this.professores = professores;
+        this.id = id;
+        this.nome = nome;
+        this.codigo = codigo;
+        this.curso = curso;
+        this.semestre = semestre;
+        this.requisito = requisito;
     }
 
-    public void setClasse(Classe classe) {
-        this.classe = classe;
+    public boolean isRequisito() {
+        return requisito;
     }
 
-    public int getTotalAlunos() {
-        return totalAlunos;
+    public void setRequisito(boolean requisito) {
+        this.requisito = requisito;
     }
 
-    public void setTotalAlunos(int totalAlunos) {
-        this.totalAlunos = totalAlunos;
+    public int getSemestre() {
+        return semestre;
     }
 
-    public int getTotalProfessores() {
-        return totalProfessores;
+    public void setSemestre(int semestre) {
+        this.semestre = semestre;
     }
 
-    public void setTotalProfessores(int totalProfessores) {
-        this.totalProfessores = totalProfessores;
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getProfessores() {
+        return professores;
+    }
+
+    public void setProfessores(int professores) {
+        this.professores = professores;
+    }
+
+    public int getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(int alunos) {
+        this.alunos = alunos;
     }
 }

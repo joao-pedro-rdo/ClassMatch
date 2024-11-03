@@ -5,6 +5,9 @@ public class ClasseCard {
     private boolean selecionada;
     private int interesse = 0;
 
+    public ClasseCard() {
+    }
+
     public ClasseCard(Classe classe, boolean selecionada, int interesse) {
         this.classe = classe;
         this.selecionada = selecionada;

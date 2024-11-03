@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.classmatch.R;
 import com.classmatch.login.LoginContracts;
 import com.classmatch.login.entity.Credenciais;
+import com.classmatch.login.interactor.LoginInteractor;
 import com.classmatch.login.presenter.LoginPresenter;
 import com.classmatch.login.router.LoginRouter;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     private LoginContracts.Presenter presenter;
     private Credenciais credenciais;
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
-        this.presenter = new LoginPresenter(this, new LoginRouter(this));
+        this.presenter = new LoginPresenter(this, new LoginRouter(this), new LoginInteractor());
         this.credenciais = new Credenciais();
 
 //        this.presenter.onOrientadorLogin();
@@ -96,29 +97,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         Button buttonLogin = findViewById(R.id.buttonLogin);
 
         buttonLogin.setOnClickListener(view -> {
-            if(!TextUtils.isEmpty(credenciais.getEmail())|| !TextUtils.isEmpty(credenciais.getSenha())){
-                mAuth.signInWithEmailAndPassword(credenciais.getEmail(),credenciais.getSenha())
-                        .addOnCompleteListener((OnCompleteListener<AuthResult>) task -> {
-                            if(task.isSuccessful()){
-                                switch (credenciais.getEmail()) {
-                                    case "aluno@teste.com":
-                                        presenter.onAlunoLogin();
-                                        break;
-                                    case "professor@teste.com":
-                                        presenter.onProfessorLogin();
-                                        break;
-                                    case "orientador@teste.com":
-                                        presenter.onOrientadorLogin();
-                                        break;
-                                    default:
-                                        Toast.makeText(LoginActivity.this, "Credencias inválidas! Use aluno, prefessor ou orientador", Toast.LENGTH_SHORT).show();
-                                        break;
-                                }
-                            }else{
-                                String error = task.getException().getMessage();
-                                Toast.makeText(LoginActivity.this,""+error,Toast.LENGTH_SHORT).show();
-                            }
-                        });
+            if(!TextUtils.isEmpty(credenciais.getEmail())|| !TextUtils.isEmpty(credenciais.getSenha())) {
+                this.presenter.login(credenciais);
             }
         });
 

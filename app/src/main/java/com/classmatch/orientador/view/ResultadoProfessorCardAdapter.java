@@ -8,16 +8,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.classmatch.R;
+import com.classmatch.orientador.entity.AlunoCard;
 import com.classmatch.orientador.entity.ProfessorCard;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ResultadoProfessorCardAdapter extends RecyclerView.Adapter<ResultadoProfessorCardAdapter.ViewHolder> {
-    private final List<ProfessorCard> items;
+    private List<ProfessorCard> items = new ArrayList<>();
 
-    public ResultadoProfessorCardAdapter(List<ProfessorCard> items) {
-        this.items = items;
-    }
+    public ResultadoProfessorCardAdapter() {}
 
     @NonNull
     @Override
@@ -30,7 +31,7 @@ public class ResultadoProfessorCardAdapter extends RecyclerView.Adapter<Resultad
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProfessorCard card = items.get(position);
         holder.textView.setText(card.getNome());
-        holder.interesse.setText(Integer.toString(card.getInteresse()));
+        holder.interesse.setText(Integer.toString(card.getNota()));
     }
 
     @Override
@@ -47,5 +48,11 @@ public class ResultadoProfessorCardAdapter extends RecyclerView.Adapter<Resultad
             textView = itemView.findViewById(R.id.nome_professor);
             interesse = itemView.findViewById(R.id.textview_interesse);
         }
+    }
+
+    public void setItems(List<ProfessorCard> items) {
+        this.items = items;
+        this.items.sort(Comparator.comparing(ProfessorCard::getNota).reversed());
+        notifyDataSetChanged();
     }
 }

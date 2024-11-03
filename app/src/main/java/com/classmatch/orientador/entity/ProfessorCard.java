@@ -3,11 +3,14 @@ package com.classmatch.orientador.entity;
 public class ProfessorCard {
 
     private String nome;
-    private int interesse;
+    private int nota;
 
-    public ProfessorCard(String nome, int interesse) {
+    public ProfessorCard() {
+    }
+
+    public ProfessorCard(String nome, int nota) {
         this.nome = nome;
-        this.interesse = interesse;
+        this.nota = nota;
     }
 
     public String getNome() {
@@ -18,11 +21,11 @@ public class ProfessorCard {
         this.nome = nome;
     }
 
-    public int getInteresse() {
-        return interesse;
+    public int getNota() {
+        return nota;
     }
 
-    public void setInteresse(int interesse) {
-        this.interesse = interesse;
+    public void setNota(int nota) {
+        this.nota = nota;
     }
 }

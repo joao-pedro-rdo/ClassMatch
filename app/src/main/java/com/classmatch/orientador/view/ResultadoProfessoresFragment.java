@@ -11,30 +11,41 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.classmatch.R;
+import com.classmatch.orientador.ResultadoContracts;
 import com.classmatch.orientador.entity.ProfessorCard;
+import com.classmatch.orientador.presenter.ResultadoPresenter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ResultadoProfessoresFragment extends Fragment {
+public class ResultadoProfessoresFragment extends Fragment implements ResultadoContracts.ViewProfessor {
+
+    private RecyclerView recyclerView;
+    private ResultadoProfessorCardAdapter adapter;
+    private ResultadoContracts.Presenter presenter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_resultado_tab, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        presenter = new ResultadoPresenter(this);
 
-        List<ProfessorCard> professorList = new ArrayList<>();
-        professorList.add(new ProfessorCard("Maria Oliveira", 5));
-        professorList.add(new ProfessorCard("Ana Silva", 4));
-        professorList.add(new ProfessorCard("Beatriz Costa", 4));
-        professorList.add(new ProfessorCard("João Pereira", 3));
-        professorList.add(new ProfessorCard("Carlos Sousa", 2));
+        if (getArguments() != null) {
+            String idClasse = getArguments().getString("idClasse");
 
+            recyclerView = view.findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapter = new ResultadoProfessorCardAdapter();
+            recyclerView.setAdapter(adapter);
 
-        ResultadoProfessorCardAdapter adapter = new ResultadoProfessorCardAdapter(professorList);
-        recyclerView.setAdapter(adapter);
+            presenter.retrieveProfessorCard(idClasse);
+        }
+
         return view;
+    }
+
+    @Override
+    public void onProfessorCardRetrieved(ArrayList<ProfessorCard> professores) {
+        adapter.setItems(professores);
     }
 }

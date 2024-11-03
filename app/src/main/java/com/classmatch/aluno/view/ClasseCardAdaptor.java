@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.classmatch.R;
+import com.classmatch.aluno.AlunoContracts;
 import com.classmatch.aluno.entity.ClasseCard;
+import com.classmatch.aluno.interactor.AlunoInteractor;
+import com.classmatch.aluno.presenter.AlunoPresenter;
 import com.google.android.material.card.MaterialCardView;
 
 import java.text.Normalizer;
@@ -24,10 +27,12 @@ public class ClasseCardAdaptor extends RecyclerView.Adapter<ClasseCardAdaptor.Vi
     private ArrayList<ClasseCard> listaFiltrada;
     private String filterTerm = "";
     private AlunoActivity view;
+    private AlunoContracts.Presenter presenter;
 
-    public ClasseCardAdaptor(ArrayList<ClasseCard> lista, AlunoActivity view) {
+    public ClasseCardAdaptor(ArrayList<ClasseCard> lista, AlunoActivity view, AlunoContracts.Presenter presenter) {
         this.setItems(lista);
         this.view = view;
+        this.presenter = presenter;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -61,9 +66,11 @@ public class ClasseCardAdaptor extends RecyclerView.Adapter<ClasseCardAdaptor.Vi
             cardView.setOnClickListener(v -> {
                 boolean canBeChecked = adaptor.getSelecionadosCount() < 5 && !cardView.isChecked();
                 if (canBeChecked) {
+                    presenter.selectClasse(classeCard.getClasse());
                     classeCard.setSelecionada(true);
                     cardView.setChecked(true);
                 } else {
+                    presenter.deselectClasse(classeCard.getClasse());
                     classeCard.setSelecionada(false);
                     cardView.setChecked(false);
                 }

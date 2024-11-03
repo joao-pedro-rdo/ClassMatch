@@ -119,7 +119,7 @@ public class OrientadorActivity extends AppCompatActivity implements OrientadorC
     public void addCriarClassBottomSheet() {
         FloatingActionButton addClasseButton = findViewById(R.id.fab);
         addClasseButton.setOnClickListener(v -> {
-            CriarClasseFragment bottomSheet = new CriarClasseFragment();
+            CriarClasseFragment bottomSheet = new CriarClasseFragment(this.presenter);
             bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
         });
     }
