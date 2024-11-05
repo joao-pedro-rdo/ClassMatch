@@ -4,6 +4,9 @@ public class AlunoCard {
 
     private String nome;
 
+    public AlunoCard() {
+    }
+
     public AlunoCard(String nome) {
         this.nome = nome;
     }

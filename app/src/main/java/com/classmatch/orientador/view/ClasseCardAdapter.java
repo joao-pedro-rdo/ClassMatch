@@ -57,30 +57,20 @@ public class ClasseCardAdapter extends RecyclerView.Adapter<ClasseCardAdapter.Vi
         public void bind(ClasseCard classeCard, ClasseCardAdapter adaptor) {
             codigoNome.setText(itemView.getContext().getString(
                     R.string.classe_codigo_nome,
-                    classeCard.getClasse().getCodigo(),
-                    classeCard.getClasse().getNome()
+                    classeCard.getCodigo(),
+                    classeCard.getNome()
             ));
             cursoSemestre.setText(itemView.getContext().getString(
                     R.string.classe_curso_semestre,
-                    classeCard.getClasse().getCurso(),
-                    classeCard.getClasse().getSemestre()
+                    classeCard.getCurso(),
+                    classeCard.getSemestre()
             ));
-            requisito.setVisibility(classeCard.getClasse().isRequisito() ? View.VISIBLE : View.GONE);
-            totalAlunos.setText(Integer.toString(classeCard.getTotalAlunos()));
-            totalProfessores.setText(Integer.toString(classeCard.getTotalProfessores()));
+            requisito.setVisibility(classeCard.isRequisito() ? View.VISIBLE : View.GONE);
+            totalAlunos.setText(Integer.toString(classeCard.getAlunos()));
+            totalProfessores.setText(Integer.toString(classeCard.getProfessores()));
 
             cardView.setOnClickListener(v -> {
-                presenter.onClasseCardClicked(classeCard.getClasse());
-//                boolean canBeChecked = adaptor.getSelecionadosCount() < 5 && !cardView.isChecked();
-//                if (canBeChecked) {
-//                    classeCard.setSelecionada(true);
-//                    cardView.setChecked(true);
-//                } else {
-//                    classeCard.setSelecionada(false);
-//                    cardView.setChecked(false);
-//                }
-//
-//                view.setSelectedCount(adaptor.getSelecionadosCount());
+                presenter.onClasseCardClicked(classeCard);
             });
         }
     }
@@ -126,9 +116,9 @@ public class ClasseCardAdapter extends RecyclerView.Adapter<ClasseCardAdapter.Vi
         this.filterTerm = searchTerm;
         ArrayList<ClasseCard> result = new ArrayList<>();
         for (int i = 0; i < lista.size(); i++) {
-            if (unAccent(lista.get(i).getClasse().getNome().toLowerCase()).contains(unAccent(this.filterTerm.toLowerCase())) ||
-                unAccent(lista.get(i).getClasse().getCurso().toLowerCase()).contains(unAccent(this.filterTerm.toLowerCase())) ||
-                unAccent(lista.get(i).getClasse().getCodigo().toLowerCase()).contains(unAccent(this.filterTerm.toLowerCase()))
+            if (unAccent(lista.get(i).getNome().toLowerCase()).contains(unAccent(this.filterTerm.toLowerCase())) ||
+                unAccent(lista.get(i).getCurso().toLowerCase()).contains(unAccent(this.filterTerm.toLowerCase())) ||
+                unAccent(lista.get(i).getCodigo().toLowerCase()).contains(unAccent(this.filterTerm.toLowerCase()))
             ) {
                 result.add(lista.get(i));
             }
@@ -144,12 +134,12 @@ public class ClasseCardAdapter extends RecyclerView.Adapter<ClasseCardAdapter.Vi
     }
 
     public void ordenarPorAlunos() {
-        listaFiltrada.sort(Comparator.comparingInt(ClasseCard::getTotalAlunos).reversed());
+        listaFiltrada.sort(Comparator.comparingInt(ClasseCard::getAlunos).reversed());
         notifyDataSetChanged();
     }
 
     public void ordenarPorProfessores() {
-        listaFiltrada.sort(Comparator.comparingInt(ClasseCard::getTotalProfessores).reversed());
+        listaFiltrada.sort(Comparator.comparingInt(ClasseCard::getProfessores).reversed());
         notifyDataSetChanged();
     }
 }

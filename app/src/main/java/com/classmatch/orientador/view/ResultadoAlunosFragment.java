@@ -12,45 +12,43 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.classmatch.R;
+import com.classmatch.orientador.ResultadoContracts;
 import com.classmatch.orientador.entity.AlunoCard;
 import com.classmatch.orientador.entity.ProfessorCard;
+import com.classmatch.orientador.presenter.ResultadoPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultadoAlunosFragment extends Fragment {
+public class ResultadoAlunosFragment extends Fragment implements ResultadoContracts.ViewAluno {
+
+    private RecyclerView recyclerView;
+    private ResultadoAlunoCardAdapter adapter;
+    private ResultadoContracts.Presenter presenter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_resultado_tab, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        presenter = new ResultadoPresenter(this);
 
-        List<AlunoCard> alunoList = new ArrayList<>();
-        alunoList.add(new AlunoCard("Lucas Almeida"));
-        alunoList.add(new AlunoCard("Mariana Souza"));
-        alunoList.add(new AlunoCard("Pedro Silva"));
-        alunoList.add(new AlunoCard("Ana Clara"));
-        alunoList.add(new AlunoCard("Felipe Santos"));
-        alunoList.add(new AlunoCard("Julia Costa"));
-        alunoList.add(new AlunoCard("Roberto Ferreira"));
-        alunoList.add(new AlunoCard("Isabela Lima"));
-        alunoList.add(new AlunoCard("Gabriel Rocha"));
-        alunoList.add(new AlunoCard("Larissa Martins"));
-        alunoList.add(new AlunoCard("Tiago Oliveira"));
-        alunoList.add(new AlunoCard("Fernanda Dias"));
-        alunoList.add(new AlunoCard("André Pires"));
-        alunoList.add(new AlunoCard("Bianca Ramos"));
-        alunoList.add(new AlunoCard("Samuel Cardoso"));
-        alunoList.add(new AlunoCard("Camila Mendes"));
-        alunoList.add(new AlunoCard("Rafael Almeida"));
-        alunoList.add(new AlunoCard("Aline Santos"));
-        alunoList.add(new AlunoCard("Thiago Gomes"));
-        alunoList.add(new AlunoCard("Carla Nascimento"));
+        if (getArguments() != null) {
+            String idClasse = getArguments().getString("idClasse");
 
-        ResultadoAlunoCardAdapter adapter = new ResultadoAlunoCardAdapter(alunoList);
-        recyclerView.setAdapter(adapter);
+            recyclerView = view.findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapter = new ResultadoAlunoCardAdapter();
+            recyclerView.setAdapter(adapter);
+
+            presenter.retrieveAlunoCard(idClasse);
+        }
+
         return view;
+    }
+
+    @Override
+    public void onAlunoCardRetrieved(ArrayList<AlunoCard> alunos) {
+        adapter.setItems(alunos);
     }
 }

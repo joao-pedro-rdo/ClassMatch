@@ -52,7 +52,7 @@ public class AlunoActivity extends AppCompatActivity implements AlunoContracts.V
     private void criarLista() {
         recyclerView = findViewById(R.id.recyclerview_lista_classes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        classeCardAdaptor = new ClasseCardAdaptor(new ArrayList<>(), this);
+        classeCardAdaptor = new ClasseCardAdaptor(new ArrayList<>(), this, presenter);
         recyclerView.setAdapter(classeCardAdaptor);
     }
 
@@ -76,10 +76,7 @@ public class AlunoActivity extends AppCompatActivity implements AlunoContracts.V
 
             @Override
             public void afterTextChanged(Editable editable) {
-//                ClasseCardAdaptor modifiedAdapter = new ClasseCardAdaptor(classeCardAdaptor.getItems(), AlunoActivity.this);
                 classeCardAdaptor.gridSearch(editable.toString());
-//                recyclerView.setAdapter(modifiedAdapter);
-//                Log.d("serch", editable.toString());
             }
         });
     }

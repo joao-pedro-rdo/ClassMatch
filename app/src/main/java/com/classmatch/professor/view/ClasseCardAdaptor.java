@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.classmatch.R;
+import com.classmatch.professor.ProfessorContracts;
 import com.classmatch.professor.entity.ClasseCard;
 import com.google.android.material.card.MaterialCardView;
 
@@ -24,10 +25,12 @@ public class ClasseCardAdaptor extends RecyclerView.Adapter<ClasseCardAdaptor.Vi
     private ArrayList<ClasseCard> listaFiltrada;
     private String filterTerm = "";
     private ProfessorActivity view;
+    private ProfessorContracts.Presenter presenter;
 
-    public ClasseCardAdaptor(ArrayList<ClasseCard> lista, ProfessorActivity view) {
+    public ClasseCardAdaptor(ArrayList<ClasseCard> lista, ProfessorActivity view, ProfessorContracts.Presenter presenter) {
         this.setItems(lista);
         this.view = view;
+        this.presenter = presenter;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,14 +74,16 @@ public class ClasseCardAdaptor extends RecyclerView.Adapter<ClasseCardAdaptor.Vi
         @NonNull
         private InteresseFragment getInteresseFragment(ClasseCard classeCard, ClasseCardAdaptor adaptor) {
             InteresseFragment ratingDialog = new InteresseFragment(classeCard.isSelecionada() ? classeCard.getInteresse() : 0);
-            ratingDialog.setOnRatingSelectedListener(new InteresseFragment.OnRatingSelectedListener() {
-                @Override
-                public void onRatingSelected(int rating) {
-                    classeCard.setSelecionada(true);
-                    classeCard.setInteresse(rating);
-                    view.setSelectedCount(adaptor.getSelecionadosCount(), adaptor.getTotalItemCount());
-                    notifyDataSetChanged();
+            ratingDialog.setOnRatingSelectedListener(rating -> {
+                classeCard.setInteresse(rating);
+                if (classeCard.isSelecionada()) {
+                    presenter.updateNotaClasse(classeCard);
+                } else {
+                    presenter.selectClasse(classeCard);
                 }
+                classeCard.setSelecionada(true);
+                view.setSelectedCount(adaptor.getSelecionadosCount(), adaptor.getTotalItemCount());
+                notifyDataSetChanged();
             });
             return ratingDialog;
         }

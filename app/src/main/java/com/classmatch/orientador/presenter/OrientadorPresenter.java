@@ -1,10 +1,8 @@
 package com.classmatch.orientador.presenter;
 
 import com.classmatch.orientador.OrientadorContracts;
-import com.classmatch.orientador.entity.Classe;
 import com.classmatch.orientador.entity.ClasseCard;
 import com.classmatch.orientador.interactor.OrientadorInteractor;
-import com.classmatch.orientador.router.OrientadorRouter;
 
 import java.util.ArrayList;
 
@@ -26,11 +24,16 @@ public class OrientadorPresenter implements OrientadorContracts.Presenter {
     }
 
     @Override
+    public void salvarClasse(ClasseCard classeCard) {
+        this.interactor.salvarClasse(classeCard);
+    }
+
+    @Override
     public void onClasseCardListDownloaded(ArrayList<ClasseCard> studentClassesList) {
         this.view.onClasseCardListRetrived(studentClassesList);
     }
 
-    public void onClasseCardClicked(Classe classe) {
+    public void onClasseCardClicked(ClasseCard classe) {
         this.router.navigateToResultado(classe);
     }
 }

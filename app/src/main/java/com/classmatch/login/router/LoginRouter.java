@@ -28,7 +28,7 @@ public class LoginRouter implements LoginContracts.Router {
     }
 
     @Override
-    public void navigateToOrientadorActivity() {
+    public void navigateToCoordenadorActivity() {
         Intent intent = new Intent(context, OrientadorActivity.class);
         context.startActivity(intent);
     }

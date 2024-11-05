@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.classmatch.orientador.OrientadorContracts;
-import com.classmatch.orientador.entity.Classe;
+import com.classmatch.orientador.entity.ClasseCard;
 import com.classmatch.orientador.view.ResultadoActivity;
 
 public class OrientadorRouter implements OrientadorContracts.Router {
@@ -15,9 +15,10 @@ public class OrientadorRouter implements OrientadorContracts.Router {
     }
 
     @Override
-    public void navigateToResultado(Classe classe) {
+    public void navigateToResultado(ClasseCard classe) {
         Intent intent = new Intent(context, ResultadoActivity.class);
-        intent.putExtra("classe", classe.getNome());
+        intent.putExtra("idClasse", classe.getId());
+        intent.putExtra("nomeClasse", classe.getNome());
         context.startActivity(intent);
     }
 }
